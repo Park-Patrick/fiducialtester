@@ -2,7 +2,6 @@
 # Slicer Fiducial Distance Calculator #
 ##################################################
 
-import sys
 import numpy as np
 import math
 import csv
@@ -126,10 +125,12 @@ def import_csv(filename1, filename2):
     numFid = csvreader1.line_num - 3
 
     euclid_dist = [None] * numFid
+    xyz_planned = np.zeros([3,numFid])
+    xyz_actual = np.zeros([3,numFid])
 
     for i in range(0,numFid):
-        xyz_planned = np.array([float(xvals_planned[i]), float(yvals_planned[i]), float(zvals_planned[i])])
-        xyz_actual = np.array([float(xvals_actual[i]), float(yvals_actual[i]), float(zvals_actual[i])])
-        euclid_dist[i] = euclidianDistanceCalc(xyz_planned, xyz_actual)
+        xyz_planned[:,i] = np.array([float(xvals_planned[i]), float(yvals_planned[i]), float(zvals_planned[i])])
+        xyz_actual[:,i] = np.array([float(xvals_actual[i]), float(yvals_actual[i]), float(zvals_actual[i])])
+        euclid_dist[i] = euclidianDistanceCalc(xyz_planned[:,i], xyz_actual[:,i])
 
     return xyz_planned, xyz_actual, euclid_dist
