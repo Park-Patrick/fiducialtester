@@ -63,7 +63,7 @@ def lineLineAngleCalc(a_entry, a_target, b_entry, b_target):
     deg_angle = math.degrees(rad_angle)
     return deg_angle
 
-def import_csv(filename1, filename2, subjid, output_filename):
+def import_csv(filename1, filename2):
     #########################
     ## Read first csv file ##
     #########################
@@ -77,9 +77,9 @@ def import_csv(filename1, filename2, subjid, output_filename):
         csvreader1 = csv.reader(csvfile1)
 
         # extracting field names through first row
-        comment1 = csvreader1.next()
-        comment2 = csvreader1.next()
-        fields1 = csvreader1.next()
+        comment1 = next(csvreader1)
+        comment2 = next(csvreader1)
+        fields1 = next(csvreader1)
 
         # extracting each data row one by one
         for row1 in csvreader1:
@@ -92,15 +92,14 @@ def import_csv(filename1, filename2, subjid, output_filename):
     fields2 = []
     data2_by_rows = []
 
-    print "Reading planned trajectories file: ", filename2
     with open(filename2, 'r') as csvfile2:
         # creating a csv reader object
         csvreader2 = csv.reader(csvfile2)
 
         # extracting field names through first row
-        comment1 = csvreader2.next()
-        comment2 = csvreader2.next()
-        fields2 = csvreader2.next()
+        comment1 = next(csvreader2)
+        comment2 = next(csvreader2)
+        fields2 = next(csvreader2)
 
         # extracting each data row one by one
         for row2 in csvreader2:
@@ -123,8 +122,6 @@ def import_csv(filename1, filename2, subjid, output_filename):
         xvals_planned.append(each_row[1])
         yvals_planned.append(each_row[2])
         zvals_planned.append(each_row[3])
-        labels.append(each_row[11])
-        descriptions.append(each_row[12])
 
     numFid = csvreader1.line_num - 3
 
