@@ -29,6 +29,8 @@ class Fiducial(models.Model):
     template = models.CharField(max_length=200)
 
 class Document(models.Model):
-    description = models.CharField(max_length=255, blank=True)
+    subject = models.CharField(max_length=255, blank=True)
+    session = models.CharField(max_length=255, blank=True)
+    template = models.CharField(max_length=255, blank=True)
     document = models.FileField(upload_to='db_documents/')
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True)
