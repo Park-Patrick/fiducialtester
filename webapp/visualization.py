@@ -33,7 +33,7 @@ def plotError(errorArray, landmarks):
         hist = ax.bar(range(len(errorArray[:, i])), errorArray[:, i])
 
         # Plot properties
-        ax.set_title('%s \nmax = %.3f, min = %.3f' % (title, max(np.absolute(errorArray[:, i])),
+        ax.set_title('%s \nmax = %.3f mm, min = %.3f mm' % (title, max(np.absolute(errorArray[:, i])),
                                                       min(np.absolute(errorArray[:, i]))),
                                                       fontsize=16, fontweight='bold')
         ax.set_ylabel('Deviation from mean [mm]', fontsize=14, fontweight='bold')
