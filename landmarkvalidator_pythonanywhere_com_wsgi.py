@@ -23,7 +23,7 @@ import sys
 #
 ## assuming your django settings file is at '/home/landmarkvalidator/mysite/mysite/settings.py'
 ## and your manage.py is is at '/home/landmarkvalidator/mysite/manage.py'
-path = '/home/landmarkvalidator/'
+path = '/home/landmarkvalidator/fiducialtester/landmarkvalidator/'
 if path not in sys.path:
     sys.path.append(path)
 
