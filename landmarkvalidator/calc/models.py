@@ -1,4 +1,6 @@
+from __future__ import unicode_literals
 from django.db import models
+
 
 class PointSet(models.Model):
     # UUID for pointset
@@ -25,3 +27,8 @@ class Fiducial(models.Model):
     pair = models.IntegerField()
     # Template brain
     template = models.CharField(max_length=200)
+
+class Document(models.Model):
+    description = models.CharField(max_length=255, blank=True)
+    document = models.FileField(upload_to='db_documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
