@@ -110,7 +110,6 @@ def import_csv(filename1, filename2):
     xvals_actual = []
     yvals_actual = []
     zvals_actual = []
-    euclid_dist = []
 
     for each_row in data_by_rows:
         xvals_actual.append(each_row[1])
@@ -124,13 +123,14 @@ def import_csv(filename1, filename2):
 
     numFid = csvreader1.line_num - 3
 
-    euclid_dist = [None] * numFid
+    errors = np.zeros([4,numFid])
     xyz_planned = np.zeros([3,numFid])
     xyz_actual = np.zeros([3,numFid])
 
     for i in range(0,numFid):
         xyz_planned[:,i] = np.array([float(xvals_planned[i]), float(yvals_planned[i]), float(zvals_planned[i])])
         xyz_actual[:,i] = np.array([float(xvals_actual[i]), float(yvals_actual[i]), float(zvals_actual[i])])
-        euclid_dist[i] = euclidianDistanceCalc(xyz_planned[:,i], xyz_actual[:,i])
+        errors[0:2, i] = xyz_actual[:,i] - xyz_planned[:,i]
+        errors[3,i] = euclidianDistanceCalc(xyz_planned[:,i], xyz_actual[:,i])
 
-    return xyz_planned, xyz_actual, euclid_dist
+    return xyz_planned, xyz_actual, errors
