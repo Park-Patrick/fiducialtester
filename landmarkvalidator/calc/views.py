@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Document
 from .forms import DocumentForm
@@ -23,10 +23,10 @@ def index(request):
 
 def upload_file(request):
 	if request.method == 'POST':
-		print("Hello")
-		print(request.__dict__)
+		print(request.POST)
+		print(request.FILES)
 		form = DocumentForm(request.POST, request.FILES)
-		print(form.is_valid())
+		print(form.__dict__)
 		if form.is_valid():
 			# file is saved
 			form.save()
