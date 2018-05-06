@@ -47,6 +47,7 @@ def plotError(errorArray, landmarks):
         ax.spines['bottom'].set_linewidth(2)
         ax.spines['left'].set_linewidth(2)
         ax.spines['right'].set_linewidth(2)
+        ax.yaxis.grid(color='k', alpha=0.2)
 
     fig.tight_layout()
 
